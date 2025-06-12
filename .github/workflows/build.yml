@@ -1,0 +1,13 @@
+name: 'Build Keyball Firmware'
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  build:
+    uses: qmk/qmk_firmware/.github/workflows/build_workflow.yml@master
+    with:
+      keyboard: keyball/keyball39
+      keymap: my_custom
