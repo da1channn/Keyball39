@@ -7,7 +7,20 @@ on:
 
 jobs:
   build:
-    uses: qmk/qmk_firmware/.github/workflows/build_workflow.yml@master
-    with:
-      keyboard: keyball/keyball39
-      keymap: my_custom
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 'Checkout keymap repository'
+        uses: actions/checkout@v3
+
+      - name: 'Setup QMK Environment'
+        uses: qmk/qmk-setup@v3
+
+      - name: 'Compile firmware'
+        run: qmk compile -kb keyball/keyball39 -km my_custom
+
+      - name: 'Archive firmware'
+        uses: actions/upload-artifact@v3
+        with:
+          name: keyball39_firmware
+          path: keyball_keyball39_my_custom.uf2
