@@ -14,7 +14,8 @@ jobs:
         uses: actions/checkout@v4
 
       - name: 'Setup QMK Environment'
-        uses: qmk/qmk-setup@v3
+        # v3タグの解決に失敗するため、特定のコミットハッシュに固定します
+        uses: qmk/qmk-setup@22333457047514336216a6983796bb36c39a8353
 
       - name: 'Compile firmware'
         run: qmk compile -kb keyball/keyball39 -km my_custom
